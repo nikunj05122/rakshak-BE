@@ -1,4 +1,4 @@
-const AppError = require('./../Utils/appError');
+const AppError = require('../utils/appError');
 
 const handleCastErrorDB = err => {
     const message = `Invalid ${err.path}: ${err.value}`
@@ -57,7 +57,7 @@ const sendErrorProd = (err, res) => {
 }
 
 module.exports = (err, req, res, next) => {
-    //console.log(err.statck); // Show the stack trace
+    //console.error(err.statck); // Show the stack trace
 
     err.statusCode = err.statusCode || 500;
     err.status = err.status || 'error';

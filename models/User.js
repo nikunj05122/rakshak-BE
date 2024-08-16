@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const validator = require('validator');
 
-const { USER } = require('./../Constant/types');
+const { USER } = require('../constant/types');
 
 const UserSchema = new mongoose.Schema({
     firstName: {
@@ -53,9 +53,14 @@ const UserSchema = new mongoose.Schema({
         select: false
     },
     // fcmToken: String,
+    designation: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Designation'
+    },
     webToken: String,
     profileImg: {
-        URL: String,
+        url: String,
+        filePath: String,
         type: {
             type: String
         }

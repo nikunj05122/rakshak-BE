@@ -7,10 +7,12 @@ const cookieParser = require('cookie-parser');
 const rateLimit = require('express-rate-limit');
 const mongoSanitize = require('express-mongo-sanitize');
 
-const AppError = require('./Utils/appError');
-const globalErrorHandler = require('./Controllers/errorController');
+const AppError = require('./utils/appError');
+const globalErrorHandler = require('./controllers/errorController');
 
-const UserRoutes = require('./Routes/UserRoutes');
+const UserRoutes = require('./routes/UserRoutes');
+const DesignationRoutes = require('./routes/DesignationRoutes');
+const UploadRoutes = require('./routes/UploadRoutes');
 
 const app = express();
 
@@ -47,6 +49,8 @@ app.use(mongoSanitize());
 app.use(xss());
 
 app.use('/api/v1/users', UserRoutes);
+app.use('/api/v1/designation', DesignationRoutes);
+app.use('/api/v1/file', UploadRoutes);
 
 app.all('*', (req, res, next) => {
     next(new AppError(`can't find ${req.originalUrl} on this server!`, 404));
