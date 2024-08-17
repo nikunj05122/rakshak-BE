@@ -1,6 +1,6 @@
-const { USER } = require("../Constant/types");
+const { USER } = require("./../constant/types");
 const User = require("../Model/User");
-const catchAsync = require("../Utils/catchAsync");
+const catchAsync = require("./../utils/catchAsync");
 
 exports.createOfficer = catchAsync(async (req, res, next) => {
   const newOfficer = await User.create({
