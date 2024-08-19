@@ -30,14 +30,14 @@ exports.signUp = catchAsync(async (req, res, next) => {
 });
 
 exports.login = catchAsync(async (req, res, next) => {
-    const { numberOrEmail, pin } = req.body;
+    const { number, email, pin } = req.body;
 
     //  1) Check number and pin exist
-    if (!numberOrEmail || !pin)
+    if ((!number && !email) || !pin)
         return next(new AppError('Please provide number and pin!', 400));
 
     //  2) Check user existd && pin is correct
-    let user = await User.findOne({ $or: [{ number: numberOrEmail }, { email: numberOrEmail }] }).select('+pin +active');
+    let user = await User.findOne({ $or: [{ number: number }, { email: email }] }).select('+pin +active');
 
     if (!user || !user.active) {
         return next(new AppError('Unauthorized user.', 401));
