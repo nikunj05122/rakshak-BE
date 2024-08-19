@@ -1,5 +1,5 @@
 const factory = require('./handlerFactory');
-const Designation = require('../models/Designation');
+const Designation = require('./../models/Designation');
 
 exports.getDesignation = factory.getOne(Designation);
 exports.getAllDesignations = factory.getAll(Designation);

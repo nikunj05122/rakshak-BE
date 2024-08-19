@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
-const { ORGANIZATION } = require('../constant/types');
+const { ORGANIZATION } = require('./../constant/types');
 
 const OrganizationSchema = new mongoose.Schema({
     name: {

@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const validator = require('validator');
 
-const { USER } = require('../constant/types');
+const { USER } = require('./../constant/types');
 
 const UserSchema = new mongoose.Schema({
     firstName: {

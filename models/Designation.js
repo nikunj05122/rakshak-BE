@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { ORGANIZATION } = require('../constant/types');
+const { ORGANIZATION } = require('./../constant/types');
 
 const DesignationSchema = new mongoose.Schema({
     department: {

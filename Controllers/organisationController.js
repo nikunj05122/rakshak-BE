@@ -1,6 +1,6 @@
 const factory = require('./handlerFactory');
-const Organization = require('../models/Organization');
-const catchAsync = require('../utils/catchAsync');
+const Organization = require('./../models/Organization');
+const catchAsync = require('./../utils/catchAsync');
 
 exports.getAllOrganization = factory.getAll(Organization);
 exports.getOneOrganization = factory.getOne(Organization);

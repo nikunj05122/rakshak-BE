@@ -1,5 +1,5 @@
 const express = require('express');
-const { ADMIN, SUPER_ADMIN } = require('../constant/types').USER;
+const { ADMIN, SUPER_ADMIN } = require('./../constant/types').USER;
 
 const authController = require('./../controllers/authController');
 const organisationController = require('./../controllers/organisationController');
