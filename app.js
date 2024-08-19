@@ -11,8 +11,9 @@ const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 
 const UserRoutes = require('./routes/UserRoutes');
-const DesignationRoutes = require('./routes/DesignationRoutes');
 const UploadRoutes = require('./routes/UploadRoutes');
+const DesignationRoutes = require('./routes/DesignationRoutes');
+const OrganizationRoutes = require('./routes/OrganizationRoutes');
 
 const app = express();
 
@@ -49,8 +50,9 @@ app.use(mongoSanitize());
 app.use(xss());
 
 app.use('/api/v1/users', UserRoutes);
-app.use('/api/v1/designation', DesignationRoutes);
 app.use('/api/v1/file', UploadRoutes);
+app.use('/api/v1/designation', DesignationRoutes);
+app.use('/api/v1/organization', OrganizationRoutes);
 
 app.all('*', (req, res, next) => {
     next(new AppError(`can't find ${req.originalUrl} on this server!`, 404));

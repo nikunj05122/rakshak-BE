@@ -15,7 +15,10 @@ const DesignationSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please provide staff']
     }
-});
+},
+    {
+        timestamps: true
+    });
 
 const Designation = mongoose.model('Designation', DesignationSchema);
 

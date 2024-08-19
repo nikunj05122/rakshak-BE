@@ -1,6 +1,6 @@
+const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 const giveResponse = require('../middleware/response');
-const AppError = require('../utils/appError');
 const storageHelper = require('../utils/storageHelper');
 
 const storageHelperInstance = new storageHelper();

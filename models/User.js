@@ -65,7 +65,10 @@ const UserSchema = new mongoose.Schema({
             type: String
         }
     }
-});
+},
+    {
+        timestamps: true
+    });
 
 UserSchema.pre('save', async function (next) {
     // Only run this function if PIN was actually not modified.
