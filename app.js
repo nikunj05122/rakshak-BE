@@ -26,13 +26,13 @@ app.use(helmet({
 }));
 
 // Limit requests from same API
-const limiter = rateLimit({
-    max: 100, // Max IP is send reqest on perticular time
-    windowMs: 60 * 60 * 1000, // That perticular time is windowMs (means windowsmiliseconds)
-    message: 'Too many requests from this IP, please try again in an hour!' // ERROR message rech the req max / windowsMs.
-});
+// const limiter = rateLimit({
+//     max: 100, // Max IP is send reqest on perticular time
+//     windowMs: 60 * 60 * 1000, // That perticular time is windowMs (means windowsmiliseconds)
+//     message: 'Too many requests from this IP, please try again in an hour!' // ERROR message rech the req max / windowsMs.
+// });
 
-app.use('/api', limiter); // Apply on that routes start with '/api' (Means all routes)
+// app.use('/api', limiter); // Apply on that routes start with '/api' (Means all routes)
 
 // Development logging  
 if (process.env.NODE_ENV === 'development') {
