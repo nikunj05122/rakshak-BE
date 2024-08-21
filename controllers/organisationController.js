@@ -15,7 +15,7 @@ exports.searchOrganization = catchAsync(async (req, res, next) => {
         slug: {
             $in: [name.toLowerCase()]
         }
-    });
+    }).limit(20);
 
     return giveResponse(res, 200, "Success", '', organization);
 });
