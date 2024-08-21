@@ -27,6 +27,16 @@ const OrganizationSchema = new mongoose.Schema({
         require: [true, 'Organization must have a address'],
         trim: true,
     },
+    state: {
+        type: String,
+        require: [true, 'Organization must have a state'],
+        trim: true,
+    },
+    city: {
+        type: String,
+        require: [true, 'Organization must have a city'],
+        trim: true,
+    },
     img: {
         url: String,
         filePath: String,
