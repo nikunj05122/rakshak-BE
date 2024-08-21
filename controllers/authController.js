@@ -12,6 +12,22 @@ const signToken = id => {
     });
 };
 
+const createSendToken = (user, statusCode, res, message) => {
+    const token = signToken(user._id);
+    const cookieOption = {
+        expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000),
+        httpOnly: true
+    }
+
+    if (process.env.NODE_ENV === 'production') cookieOption.secure = true; // Cookie only send in encryption connection (Basically we are only using HTTPS)
+
+    res.cookie('jwt', token, cookieOption);
+
+    user.password = undefined;
+
+    return giveResponse(res, statusCode, "Success", message, { token, user });
+}
+
 exports.signUp = catchAsync(async (req, res, next) => {
     const newUser = await User.create({
         firstName: req.body.firstName,
@@ -23,10 +39,11 @@ exports.signUp = catchAsync(async (req, res, next) => {
         email: req.body.email,
     });
 
-    const token = signToken(newUser._id);
     newUser.pin = undefined;
+    newUser.active = undefined;
+    newUser.webToken = undefined;
 
-    return giveResponse(res, 201, "Success", 'User was created.', { token, newUser });
+    return createSendToken(newUser, 201, res, 'User was created.');
 });
 
 exports.login = catchAsync(async (req, res, next) => {
@@ -58,7 +75,7 @@ exports.login = catchAsync(async (req, res, next) => {
     user.active = undefined;
     user.webToken = undefined;
 
-    return giveResponse(res, 200, "Success", 'User was logedIn.', { token, user });
+    return createSendToken(user, 200, res, 'User was logedIn.');
 });
 
 exports.protect = catchAsync(async (req, res, next) => {
