@@ -9,7 +9,7 @@ const router = express.Router();
 router
     .route('/')
     .get(organisationController.getAllOrganization)
-    .post(authController.protect, authController.restrictTo(SUPER_ADMIN), organisationController.createOrganization);
+    .post(authController.protect, authController.restrictTo(ADMIN), organisationController.createOrganization);
 
 router
     .route('/search')
@@ -18,7 +18,7 @@ router
 router
     .route("/:id")
     .get(organisationController.getOneOrganization)
-    .delete(authController.protect, authController.restrictTo(SUPER_ADMIN), organisationController.deleteOrganization)
+    .delete(authController.protect, authController.restrictTo(ADMIN, SUPER_ADMIN), organisationController.deleteOrganization)
     .patch(authController.protect, authController.restrictTo(ADMIN, SUPER_ADMIN), organisationController.updateOrganization);
 
 module.exports = router;
