@@ -12,6 +12,10 @@ router
     .post(authController.protect, authController.restrictTo(SUPER_ADMIN), organisationController.createOrganization);
 
 router
+    .route('/search')
+    .get(organisationController.searchOrganization)
+
+router
     .route("/:id")
     .get(organisationController.getOneOrganization)
     .delete(authController.protect, authController.restrictTo(SUPER_ADMIN), organisationController.deleteOrganization)
