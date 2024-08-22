@@ -1,6 +1,7 @@
 const factory = require('./handlerFactory');
-const Organization = require('./../models/Organization');
 const catchAsync = require('./../utils/catchAsync');
+const Organization = require('./../models/Organization');
+const giveResponse = require('./../middleware/response');
 
 exports.getAllOrganization = factory.getAll(Organization);
 exports.getOneOrganization = factory.getOne(Organization);
@@ -18,10 +19,10 @@ exports.createOrganization = catchAsync(async (req, res, next) => {
 exports.searchOrganization = catchAsync(async (req, res, next) => {
     const { name } = req.query;
 
+    const searchPattern = new RegExp(name, 'i');
+
     const organization = await Organization.find({
-        slug: {
-            $in: [name.toLowerCase()]
-        }
+        slug: searchPattern
     }).limit(20);
 
     return giveResponse(res, 200, "Success", '', organization);
